@@ -20,20 +20,20 @@
             </div>
 
             <div class="col-md-7 p-5">
-                <h3 class="fw-bold mb-3">Admin Login</h3>
+                <h3 class="fw-bold mb-3"> Login</h3>
                 <p class="text-muted mb-4">Please enter your credentials to continue.</p>
                 
                 <form>
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Admin Email</label>
-                        <input type="email" class="form-control form-control-lg fs-6" placeholder="admin@university.edu">
+                        <label class="form-label small fw-bold">Username</label>
+                        <input type="text" class="form-control form-control-lg fs-6" placeholder="admin@university.edu">
                     </div>
                     <div class="mb-4">
                         <label class="form-label small fw-bold">Password</label>
                         <input type="password" class="form-control form-control-lg fs-6">
                     </div>
                     <div class="d-grid">
-                        <a href="../../src/Views/Admin%20Dashboard.php" class="btn btn-primary btn-lg fs-6 shadow-sm">
+                        <a href="../../src/Views/AdminDashboard.php" class="btn btn-primary btn-lg fs-6 shadow-sm">
                         Sign In
                         </a>
                     </div>
