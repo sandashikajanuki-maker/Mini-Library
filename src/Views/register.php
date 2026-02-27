@@ -7,9 +7,9 @@
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../public/assets/css/dashboradstyle.css">
     <link rel="stylesheet" href="../../public/assets/libs/bootstrap-5.3.8/css/bootstrap.min.css">
 </head>
+
 <body class="bg-light d-flex align-items-center vh-100">
     <div class="container">
         <div class="row justify-content-center">
@@ -23,35 +23,43 @@
                 <div class="col-md-7 p-5">
                     <h3 class="fw-bold mb-3"> Sign Up</h3>
                     <p class="text-muted mb-4">Please enter your details to create an account.</p>
-                    
+
                     <form name="registerform" action="../../src/Views/AdminDashboard.php" method="POST">
                         <div class="mb-3">
                             <label class="form-label small fw-bold">Username</label>
-                            <input type="text" class="form-control form-control-lg fs-6" placeholder="Enter your username" required>
-                            
+                            <input type="text" name="username" class="form-control form-control-lg fs-6"
+                                placeholder="Enter your username" oninput="username_validation()" onblur="username_validation()" required>
+                            <span id="usernameerror" style="font-size: 0.8rem;"></span>
                         </div>
-                        
-                        
+
                         <div class="mb-4">
                             <label class="form-label small fw-bold">Password</label>
-                            <input type="password" class="form-control form-control-lg fs-6" placeholder="Enter your password" required>
-                            
+                            <input type="password" name="password" class="form-control form-control-lg fs-6"
+                                placeholder="Enter your password" oninput="password_validation()" onblur="password_validation()" required>
+                            <span id="passworderror" style="font-size: 0.8rem;"></span>
                         </div>
+
                         <div class="mb-3">
                             <label class="form-label small fw-bold">Full Name</label>
-                            <input type="text" class="form-control form-control-lg fs-6" placeholder="Enter your full name" required>
-                            
+                            <input type="text" name="fullname" class="form-control form-control-lg fs-6"
+                                placeholder="Enter your full name" oninput="fullname_validation()" onblur="fullname_validation()" required>
+                            <span id="fullnameerror" style="font-size: 0.8rem;"></span>
                         </div>
+
                         <div class="mb-3">
                             <label class="form-label small fw-bold">NIC</label>
-                            <input type="text" class="form-control form-control-lg fs-6" placeholder="Enter your full name" required>
-                            
+                            <input type="text" name="nic" class="form-control form-control-lg fs-6"
+                                placeholder="Enter your NIC" oninput="nic_validation()" onblur="nic_validation()" required>
+                            <span id="nicerror" style="font-size: 0.8rem;"></span>
                         </div>
+
                         <div class="mb-3">
                             <label class="form-label small fw-bold">Email</label>
-                            <input type="text" class="form-control form-control-lg fs-6" placeholder="Enter your email address" required>
-                            
+                            <input type="email" name="email" class="form-control form-control-lg fs-6"
+                                placeholder="Enter your email address" oninput="email_validation()" required>
+                            <span id="emailerror" style="font-size: 0.8rem;"></span>
                         </div>
+
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-lg fs-6 shadow-sm">
                                 Sign Up
@@ -64,7 +72,7 @@
             </div>
         </div>
     </div>
-
+    <script src="../../public/assets/js/signupValidation.js"></script>
 </body>
+
 </html>
-    
