@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="public/assests/css/bootstrap.min.css">
+    <title><?php echo $book['bookname']; ?></title>
+    <link rel="stylesheet" href="../../public/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
@@ -16,19 +16,7 @@
         <div class="row mb-5 pb-5 border-bottom">
             <div class="col-md-4 col-lg-3 text-center">
                 <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
-                    <?php
-                    if (isset($_POST["find"])) {
-                        $id = $_POST["id"];
-                        require_once '';
-
-                        $bookController = new BookController();
-                        $book = $bookController->getBookByID($sNo);
-
-                        if ($book) {
-                            echo "<p><img src='" . $book['coverimg'] . "' class='card-img-top' alt='...'></p>";
-                        }
-                    }
-                    ?>
+                    <img src="coverimg/<?php echo $book ['coverimg']; ?>">                                                                                                                     
                     <div class="card-body bg-white">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="text-warning">
@@ -48,18 +36,15 @@
             </div>
 
             <div class="col-md-8 col-lg-9 mt-4 mt-md-0">
-                <h1 class="fw-bold">Book Name</h1>
-                <p class="text-secondary fs-5">Author Name</p>
+                <h1 class="fw-bold"><?php echo htmlspecialchars($book['bookname']); ?></h1>
+                <p class="text-secondary fs-5"><?php echo htmlspecialchars($book['author']); ?></p>
 
                 <div class="mt-4">
-                    <p><strong><i class="bi bi-grid"></i> Category:</strong> <span class="text-muted">Fiction,
-                            Adventure</span></p>
+                    <p><strong><i class="bi bi-grid"></i> Category:</strong> <span class="text-muted"> <?php echo htmlspecialchars($book['category']); ?></span></p>
                     <hr class="text-muted opacity-25">
                     <h5 class="fw-bold mt-4">Description</h5>
                     <p class="text-muted lh-lg">
-                        This is a placeholder for your description paragraph. It follows your sketch's layout
-                        by providing a clean, readable space for the book's synopsis. Use PHP to echo
-                        your database content here.
+                        <?php echo htmlspecialchars($book['description']); ?>
                     </p>
                 </div>
             </div>
@@ -89,7 +74,7 @@
 
     </div>
 
-    <script src="public/assests/js/bootstrap.bundle.min.js"></script>
+    <script src="public/assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
