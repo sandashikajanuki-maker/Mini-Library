@@ -10,7 +10,7 @@
     </div>
 
     <div class="card-body p-4">
-        <form action="save_member.php" method="POST">
+        <form action="../../src/Controllers/MemberController.php" method="POST">
             <div class="row g-4">
                 
                 <div class="col-md-6">
@@ -33,7 +33,7 @@
 
                 <div class="col-md-6">
                     <label class="form-label small fw-bold text-muted">EMAIL ADDRESS</label>
-                    <input type="email" name="email" class="form-control bg-light border-0 p-2 shadow-none" 
+                    <input type="text" name="email" class="form-control bg-light border-0 p-2 shadow-none" 
                            placeholder="e.g. member@example.com" style="border-radius: 8px;" required>
                 </div>
 
@@ -45,7 +45,6 @@
                         Clear Fields
                     </button>
                 </div>
-
             </div>
         </form>
     </div>

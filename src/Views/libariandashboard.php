@@ -28,7 +28,7 @@
                         </div>
                         <div>
                             <p class="text-muted small mb-0">Total Books</p>
-                            <h4 class="fw-bold mb-0" style="color: #4A6741;">12,450</h4>
+                            <h4 class="fw-bold mb-0" style="color: #34495e;">12,450</h4>
                         </div>
                     </div>
                 </div>

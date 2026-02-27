@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <label class="form-label small fw-bold text-muted">SEARCH ISSUE RECORD</label>
                 <div class="input-group">
-                    <input type="text" name="search_id" class="form-control bg-light border-0 shadow-none p-2" placeholder="Enter Member ID..." style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;">
+                    <input type="text" name="search_id" class="form-control bg-light border-0 shadow-none p-2" placeholder="Enter Member NIC..." style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;">
                     <button class="btn btn-primary-custom px-3" type="button"><i class="bi bi-search"></i></button>
                 </div>
             </div>
