@@ -19,14 +19,15 @@
                     <i class="bi bi-text-left fs-5"></i>
                 </button>
                 <a class="navbar-brand fw-bolder text-dark" href="#">
-                    <span class="text-primary">U</span>L<span class="text-primary">S</span> <span class="fw-light opacity-75">Admin</span>
+                    <span class="text-primary">U</span>L<span class="text-primary">S</span> <span
+                        class="fw-light opacity-75">Admin</span>
                 </a>
             </div>
 
             <div class="d-flex align-items-center gap-3">
                 <button class="btn btn-sm btn-dark rounded-3 px-3 fw-bold d-none d-md-block" data-bs-toggle="modal"
                     data-bs-target="#addModal">
-                    <i class="bi bi-plus-lg me-1"></i> Add Librarian
+                    <i class="bi bi-plus-lg me-1"></i> Add Role
                 </button>
                 <div class="vr mx-1 my-2"></div>
                 <div class="dropdown">
@@ -122,7 +123,7 @@
                         <tr>
                             <td class="ps-4 py-4">
                                 <div class="d-flex align-items-center">
-                                    
+
                                     <div>
                                         <div class="fw-bold text-dark">Amodh Kushan</div>
                                         <div class="text-muted x-small font-monospace">UID: #*****</div>
@@ -162,7 +163,7 @@
                         <tr>
                             <td class="ps-4 py-4">
                                 <div class="d-flex align-items-center opacity-75">
-                                    
+
                                     <div>
                                         <div class="fw-bold text-dark">Jayodya Dew</div>
                                         <div class="text-muted x-small font-monospace">UID: #*****</div>
@@ -213,7 +214,7 @@
                         <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted">Identity:</label>
+                        <label class="form-label small fw-bold text-muted">NIC</label>
                         <input type="text" class="form-control bg-light border-0 p-3 rounded-3 shadow-none"
                             placeholder="">
                     </div>
@@ -221,6 +222,17 @@
                         <label class="form-label small fw-bold text-muted">Email Address</label>
                         <input type="email" class="form-control bg-light border-0 p-3 rounded-3 shadow-none"
                             placeholder="">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-muted">Role</label>
+                        <div class="dropdown">
+                            <select id="inputState" class="form-select">
+                                <option>Admin</option>
+                                <option>Librarian</option>
+                                <option>Member</option>
+                                <option selected>Guest</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="d-grid gap-2">
                         <button class="btn btn-primary p-3 fw-bold rounded-3 shadow-sm border-0">Grant System
