@@ -62,7 +62,7 @@
 </div>
 <div class="row">
     <div class="col-6">
-        <?php include '../../src/Includes/libariandashboardchart.php'; ?>
+        <?php include __DIR__. '../../Includes/libariandashboardchart.php'; ?>
     </div>
 
     <div class="col-6 mt-3">
