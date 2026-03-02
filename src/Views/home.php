@@ -13,10 +13,10 @@
 
 <body>
 
-    <!-- <?php include '../Includes/navsidebar.php' ?> -->
+    <?php include '../Includes/navsidebar.php' ?>
 
-    <main class="content" id="main-content">
-        
+    <main class="content mt-5" id="main-content">
+
         <?php
 
         require_once '../../Config/DBConnection.php';
@@ -29,24 +29,26 @@
         $result = $conn->query($query);
         ?>
 
-        <div class="container">
+        <div class="container mt-5">
             <h3>Available Books</h3>
             <div class="row">
                 <?php while ($book = $result->fetch_assoc()): ?>
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $book['bookname']; ?></h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><?php echo $book['author']; ?></h6>
-                                <p class="small text-muted">ISBN: <?php echo $book['isbn']; ?></p>
+                        <a href="bookview.php?isbn=<?php echo $book['isbn']; ?>" class="text-decoration-none">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold"><?php echo $book['bookname']; ?></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">by <?php echo $book['author']; ?></h6>
+                                    <p class="small text-muted">ISBN: <?php echo $book['isbn']; ?></p>
 
-                                <?php if ($book['status'] == 'Available'): ?>
+                                    <!-- <?php if ($book['status'] == 'Available'): ?>
                                     <button class="btn btn-sm btn-success">Borrow</button>
-                                <?php else: ?>
+                                <?php else: ?> -->
                                     <span class="badge bg-danger">Issued</span>
                                 <?php endif; ?>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 <?php endwhile; ?>
             </div>
