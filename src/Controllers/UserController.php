@@ -98,7 +98,7 @@ class UserController
                 return ['success' => false, 'message' => 'All fields are required'];
             }
 
-            $result = $this->userModel->updateUser($userId, $name, $username, $email, $password, $roleId);
+            $result = $this->userModel->updateUser($userId, $name, $username, $email, $password,$roleId);
 
             if ($result === false) {
                 return ['success' => false, 'message' => 'Failed to update user'];
