@@ -1,7 +1,7 @@
 <?php
 
+session_start();
 
-require_once '../../Config/DBConnection.php';
 require_once '../Models/LoginModel.php';
 
 class LoginController
@@ -47,4 +47,3 @@ if (isset($_POST['admin-login'])) {
         echo "<a href='../../index.php'>Go Back</a>";
     }
 }
-?>
