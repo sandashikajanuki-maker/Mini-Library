@@ -29,16 +29,12 @@ $roles = $allRoles['data'] ?? [];
                     <i class="bi bi-text-left fs-5"></i>
                 </button>
                 <a class="navbar-brand fw-bolder text-dark" href="#">
-                    <span class="text-primary">U</span>L<span class="text-primary">S</span> <span
+                     <span
                         class="fw-light opacity-75">Admin</span>
                 </a>
             </div>
 
             <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-sm btn-dark rounded-3 px-3 fw-bold d-none d-md-block" data-bs-toggle="modal"
-                    data-bs-target="#addModal">
-                    <i class="bi bi-plus-lg me-1"></i> Add Role
-                </button>
                 <div class="vr mx-1 my-2"></div>
                 <div class="dropdown">
                     <button
@@ -74,7 +70,6 @@ $roles = $allRoles['data'] ?? [];
     </nav>
 
     
-
     <div class="container-fluid py-5 px-lg-5">
 
         <div class="row mb-5 align-items-center">
@@ -133,11 +128,11 @@ $roles = $allRoles['data'] ?? [];
                                     <td class="pe-4 py-3 text-end">
                                         <div class="btn-group border rounded-3 p-1 bg-white shadow-sm">
                                             <button class="btn btn-sm btn-white border-0 text-secondary px-3" title="Edit"
-                                                data-bs-toggle="modal" data-bs-target="#updateModal" onclick="loadUserData(<?php echo $user['id']; ?>)">
+                                                onclick="loadUserData(<?php echo $user['id']; ?>)">
                                                 <i class="bi bi-pencil-square"></i>
                                             </button>
-                                            <button class="btn btn-sm btn-white border-0 text-warning px-3" title="Suspend" onclick="suspendUser(<?php echo $user['id']; ?>)">
-                                                <i class="bi bi-slash-circle"></i>
+                                            <button class="btn btn-sm btn-white border-0 text-warning px-3" title="Delete" onclick="deleteUser(<?php echo $user['id']; ?>)">
+                                                <i class="bi bi-trash"></i>
                                             </button>
                                         </div>
                                     </td>
@@ -153,43 +148,6 @@ $roles = $allRoles['data'] ?? [];
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="addModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg rounded-4">
-                <div class="modal-body p-5">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h5 class="fw-bold m-0">Add Role to User</h5>
-                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
-                    </div>
-                    <form id="addRoleForm">
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold text-muted">NIC</label>
-                            <input type="number" id="addRoleNic" class="form-control bg-light border-0 p-3 rounded-3 shadow-none" placeholder="" min="1" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold text-muted">Email Address</label>
-                            <input type="email" id="addRoleEmail" class="form-control bg-light border-0 p-3 rounded-3 shadow-none" placeholder="" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label small fw-bold text-muted">Role</label>
-                            <select id="addRoleSelect" class="form-select bg-light border-0 p-3 rounded-3 shadow-none" required>
-                                <option value="5" selected>Guest</option>
-                                <option value="1">Admin</option>
-                                <option value="2">Librarian</option>
-                                <option value="3">Member</option>
-                            </select>
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary p-3 fw-bold rounded-3 shadow-sm border-0">Grant System Permission</button>
-                            <button type="button" class="btn btn-link text-muted text-decoration-none small" data-bs-dismiss="modal">Discard Changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal fade" id="updateModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg rounded-4 text-center">
@@ -218,7 +176,15 @@ $roles = $allRoles['data'] ?? [];
                             <label class="form-label small fw-bold text-muted text-uppercase">New Password <span class="text-muted fw-normal">(leave blank to keep current)</span></label>
                             <input type="password" id="updateUserPassword" class="form-control bg-light border-0 p-3 rounded-3" placeholder="••••••••">
                         </div>
-                        
+                        <div class="mb-3 text-start">
+                            <label class="form-label small fw-bold text-muted text-uppercase">Role</label>
+                            <select id="updateUserRole" class="form-select bg-light border-0 p-3 rounded-3" required>
+                                
+                                <?php foreach ($roles as $role): ?>
+                                    <option value="<?php echo $role['roleid']; ?>"><?php echo htmlspecialchars($role['role']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-dark w-100 p-3 fw-bold rounded-3 mb-2">Save Profile Changes</button>
                         <button type="button" class="btn btn-light w-100 p-3 fw-bold rounded-3 text-muted" data-bs-dismiss="modal">Cancel</button>
                     </form>
@@ -257,16 +223,34 @@ $roles = $allRoles['data'] ?? [];
             .then(data => {
                 if (data.success) {
                     const user = data.data;
-                    document.getElementById('updateUserId').value = user.id;
-                    document.getElementById('updateUserName').value = user.name;
+
+                    // Populate all fields
+                    document.getElementById('updateUserId').value      = user.id;
+                    document.getElementById('updateUserName').value     = user.name;
                     document.getElementById('updateUserUsername').value = user.username;
-                    document.getElementById('updateUserEmail').value = user.email;
-                    document.getElementById('updateUserPassword').value = '';
-                    document.getElementById('updateUserRole').value = user.roleid;
-                    document.getElementById('editUserID').textContent = '#LIB-' + String(user.id).padStart(3, '0');
+                    document.getElementById('updateUserEmail').value    = user.email;
+                    document.getElementById('updateUserPassword').value = ''; // always blank for security
+                    document.getElementById('editUserID').textContent   = '#LIB-' + String(user.id).padStart(3, '0');
+
+                    // Pre-select the correct role
+                    const roleSelect = document.getElementById('updateUserRole');
+                    roleSelect.value = user.roleid;
+                    // If no option matched, fallback to first selectable option
+                    if (!roleSelect.value) {
+                        roleSelect.selectedIndex = 0;
+                    }
+
+                    // Open modal only after all fields are populated
+                    const modal = new bootstrap.Modal(document.getElementById('updateModal'));
+                    modal.show();
+                } else {
+                    alert('Failed to load user data. Please try again.');
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while loading user data.');
+            });
         }
 
 
@@ -361,32 +345,29 @@ $roles = $allRoles['data'] ?? [];
                 const row = document.createElement('tr');
                 row.setAttribute('data-user-id', user.id);
                 row.innerHTML = `
-                    <td class="ps-4 py-4">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <div class="fw-bold text-dark">${user.name}</div>
-                                <div class="text-muted x-small font-monospace">UID: #${String(user.id).padStart(5, '0')}</div>
-                            </div>
-                        </div>
+                    <td class="ps-4 py-3">
+                        <div class="text-muted small font-monospace">#${String(user.id).padStart(5, '0')}</div>
                     </td>
-                    <td>
-                        <div class="small fw-medium">${user.email}</div>
-                        <div class="text-muted x-small">${user.role || 'No Role'}</div>
+                    <td class="py-3">
+                        <div class="fw-bold text-dark small">${user.name}</div>
                     </td>
-                    <td>
-                        <span class="badge bg-white text-dark border px-3 py-2 fw-semibold rounded-3">
-                            ${user.role || 'Guest'}
+                    <td class="py-3">
+                        <div class="small text-muted font-monospace">${user.username}</div>
+                    </td>
+                    <td class="py-3">
+                        <div class="small">${user.nic}</div>
+                    </td>
+                    <td class="py-3">
+                        <div class="small">${user.email}</div>
+                    </td>
+                    <td class="py-3 text-center">
+                        <span class="badge bg-white text-dark border px-3 py-2 fw-semibold rounded-3 small">
+                            ${user.role || 'No Role'}
                         </span>
                     </td>
-                    <td class="text-center">
-                        <div class="d-inline-flex align-items-center bg-success-subtle text-success px-3 py-1 rounded-pill small fw-bold border border-success-subtle">
-                            <span class="p-1 bg-success rounded-circle me-2"></span>
-                            Active
-                        </div>
-                    </td>
-                    <td class="pe-4 text-end">
+                    <td class="pe-4 py-3 text-end">
                         <div class="btn-group border rounded-3 p-1 bg-white shadow-sm">
-                            <button class="btn btn-sm btn-white border-0 text-secondary px-3" onclick="loadUserData(${user.id})" data-bs-toggle="modal" data-bs-target="#updateModal">
+                            <button class="btn btn-sm btn-white border-0 text-secondary px-3" onclick="loadUserData(${user.id})" title="Edit">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
                             <button class="btn btn-sm btn-white border-0 text-warning px-3" onclick="suspendUser(${user.id})" title="Suspend">
@@ -435,6 +416,6 @@ if (isset($_POST['action'])) {
             echo json_encode(['success' => false, 'message' => 'Invalid action']);
             break;
     }
-    exit();
+    exit;
 }
 ?>
