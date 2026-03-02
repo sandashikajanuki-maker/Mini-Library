@@ -29,7 +29,7 @@ include 'src/Controllers/BookController.php';
 
         .book-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(8, 43, 7, 0.1);
         }
     </style>
 
