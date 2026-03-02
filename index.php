@@ -12,7 +12,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 
     <?php include 'src/Includes/navsidebar.php' ?>
 
@@ -75,10 +74,6 @@
 
     <script src="../../public/assets/js/navsidebar.js"></script>
     <script src="public/assets/js/bootstrap.bundle.min.js"></script>
-=======
-    <h1>Library System</h1>
-    <h1>Jayodya Dewmini</h1>
->>>>>>> 0c35ae8e4fd90b03339cb374b717ffc82f1d8c39
 </body>
 
 </html>

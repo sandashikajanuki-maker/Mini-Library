@@ -1,5 +1,5 @@
 <?php
-    include 'src/Controllers/BookController.php';
+include 'src/Controllers/BookController.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,12 +15,31 @@
 
 <body class="bg-light">
 
+    <?php
+    require_once '../../Config/DBConnection.php';
+
+    $db = new DBConnection();
+    $conn = $db->getConnection();
+
+    $isbn = $_GET['isbn'] ?? '';
+
+    $stmt = $conn->prepare("SELECT * FROM book WHERE isbn = ?");
+    $stmt->bind_param("s", $isbn);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $book = $result->fetch_assoc();
+
+    if (!$book) {
+        die("Book not found!");
+    }
+    ?>
+
     <div class="container my-5">
 
         <div class="row mb-5 pb-5 border-bottom">
             <div class="col-md-4 col-lg-3 text-center">
                 <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
-                    <img src="coverimg/<?php echo $book ['coverimg']; ?>">                                                                                                                     
+                    <img src="coverimg/<?php echo $book['coverimg']; ?>">
                     <div class="card-body bg-white">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="text-warning">
@@ -64,7 +83,7 @@
             <?php
 
             for ($i = 0; $i < 4; $i++):
-                ?>
+            ?>
                 <div class="col">
                     <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-3 bg-white">
                         <img src="https://via.placeholder.com/150x200" class="card-img-top rounded-3" alt="Interest Cover">

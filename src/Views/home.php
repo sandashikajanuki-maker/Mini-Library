@@ -25,7 +25,12 @@
         $db = new DBConnection();
         $conn = $db->getConnection();
 
-        $query = "SELECT bookname, author, isbn, category, description FROM book LIMIT 12";
+        // $query = "SELECT bookname, author, isbn, category, description FROM book LIMIT 12";
+        $query = "SELECT b.bookname, b.author, b.isbn, b.category, b.description, 
+          (SELECT COUNT(*) FROM bookcopies bc 
+           WHERE bc.isbn = b.isbn AND bc.availability = 'Available') as available_count
+          FROM book b 
+          LIMIT 12";
         $result = $conn->query($query);
         ?>
 
@@ -33,7 +38,7 @@
             <h3>Available Books</h3>
             <div class="row">
                 <?php while ($book = $result->fetch_assoc()): ?>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                         <a href="bookview.php?isbn=<?php echo $book['isbn']; ?>" class="text-decoration-none">
                             <div class="card h-100 shadow-sm">
                                 <div class="card-body">
@@ -41,9 +46,10 @@
                                     <h6 class="card-subtitle mb-2 text-muted">by <?php echo $book['author']; ?></h6>
                                     <p class="small text-muted">ISBN: <?php echo $book['isbn']; ?></p>
 
-                                    <!-- <?php if ($book['status'] == 'Available'): ?>
+                                    
+                                        <?php if ($book['available_count'] > 0): ?>
                                     <button class="btn btn-sm btn-success">Borrow</button>
-                                <?php else: ?> -->
+                                <?php else: ?>
                                     <span class="badge bg-danger">Issued</span>
                                 <?php endif; ?>
                                 </div>
