@@ -13,29 +13,30 @@
 
 <body>
 
-    <?php include '../Includes/navsidebar.php' ?>
+    <!-- <?php include '../Includes/navsidebar.php' ?> -->
 
     <main class="content" id="main-content">
+        
         <?php
 
         require_once '../../Config/DBConnection.php';
 
 
         $db = new DBConnection();
-        $conn = $db->conn;
+        $conn = $db->getConnection();
 
-        $query = "SELECT title, author, isbn, status FROM books LIMIT 12";
+        $query = "SELECT bookname, author, isbn, category, description FROM book LIMIT 12";
         $result = $conn->query($query);
         ?>
 
-        <div class="container mt-5">
+        <div class="container">
             <h3>Available Books</h3>
             <div class="row">
                 <?php while ($book = $result->fetch_assoc()): ?>
                     <div class="col-md-3 mb-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo $book['title']; ?></h5>
+                                <h5 class="card-title"><?php echo $book['bookname']; ?></h5>
                                 <h6 class="card-subtitle mb-2 text-muted"><?php echo $book['author']; ?></h6>
                                 <p class="small text-muted">ISBN: <?php echo $book['isbn']; ?></p>
 
@@ -59,11 +60,3 @@
 </body>
 
 </html>
-
-session_start();
-require_once '../Config/DBConnection.php';
-
-if (!isset($_SESSION['roleid'])) {
-header("Location: ../../index.php");
-exit();
-}
