@@ -6,8 +6,12 @@ class DBConnection
     private $username = "root";
     private $password = "";
     private $database = "minilibrary";
-    protected $conn;
+    public $conn;
 
+    public function getConnection()
+    {
+        return $this->conn;
+    }
     public function __construct()
     {
         try {

@@ -17,7 +17,7 @@
 
     <main class="content" id="main-content">
         <div class="container">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center align-items-center">
                 <div class="col-12 shadow-lg rounded-4 overflow-hidden bg-white p-0 d-flex flex-column flex-md-row">
 
                     <div class="col-md-5 bg-primary text-white p-5 d-none d-md-flex flex-column justify-content-center">
