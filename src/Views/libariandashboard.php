@@ -4,105 +4,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Library Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../public/assets/css/dashboradstyle.css">
-    <link rel="stylesheet" href="../../public/assets/libs/bootstrap-5.3.8/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../public/assets/css/navsidebar.css">
 </head>
 
 <body>
+    <div class="container-fluid p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h3 class="fw-bold mb-0">Welcome! Admin</h3>
+                <small class="text-muted">FEB 26, 2026 | Thursday</small>
+            </div>
+        </div>
 
-    <!-- NAV & SIDE BAR -->
-    <?php include '../../src/Includes/navsidebar.php' ?>
-
-    <main class="content" id="main-content">
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12-lg">
-                    <h1 class="my-4">Dashboard</h1>
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="card stat-card p-3 shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="p-3 rounded-3 me-3" style="background-color: #F8FAF9;">
+                            <i class="bi bi-book text-success" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted small mb-0 text-muted">Total Books</p>
+                            <h4 class="fw-bold mb-0" style="color: #34495e;">12,450</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-3">
-                    <div class="card hover-card" style="width: 18rem; margin: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Total Members</h5>
-                            <h3 class="card-text text-center">53</h3>
-                            <a href="#" class="btn btn-primary d-block justify-content-center">Member Directory</a>
+            <div class="col-md-3">
+                <div class="card stat-card p-3 shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="p-3 rounded-3 me-3" style="background-color: #F8FAF9;">
+                            <i class="bi bi-journal-check text-success" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted small mb-0">Borrowed</p>
+                            <h4 class="fw-bold mb-0" style="color: #4A6741;">680</h4>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-3">
-                    <div class="card hover-card" style="width: 18rem; margin: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Total Guest</h5>
-                            <h3 class="card-text text-center">120</h3>
-                            <a href="#" class="btn btn-primary d-block justify-content-center">Guest Management</a>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card p-3 shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="p-3 rounded-3 me-3" style="background-color: #FEE2E2;">
+                            <i class="bi bi-exclamation-triangle text-danger" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted small mb-0">Overdue</p>
+                            <h4 class="fw-bold mb-0 text-danger">24</h4>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-3">
-                    <div class="card hover-card" style="width: 18rem; margin: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Total Rentals</h5>
-                            <h3 class="card-text text-center">100</h3>
-                            <a href="#" class="btn btn-primary d-block justify-content-center">Book Management</a>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card p-3 shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="p-3 rounded-3 me-3" style="background-color: #F8FAF9;">
+                            <i class="bi bi-people text-success" style="font-size: 1.5rem;"></i>
                         </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card hover-card" style="width: 18rem; margin: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Overdue</h5>
-                            <h3 class="card-text text-center">100</h3>
-                            <a href="#" class="btn btn-primary d-block justify-content-center">Fine Management</a>
+                        <div>
+                            <p class="text-muted small mb-0">Members</p>
+                            <h4 class="fw-bold mb-0" style="color: #4A6741;">15,000</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <?php include __DIR__ . '../../Includes/libariandashboardchart.php'; ?>
-            </div>
 
-            <div class="col-6 mt-3">
-                <h5 class="text-secondary fw-bold mb-4">Catalog</h5>
+        <div class="mb-4">
+    <h5 class="fw-bold mb-3" style="color: #4A6741;">Quick Actions</h5>
+    <ul class="nav nav-tabs border-0 mb-2" id="quickActionTabs" role="tablist" style="border-bottom: 1px solid #E2E8F0 !important;">
+        <li class="nav-item shadow-none">
+            <button class="nav-link active custom-tab" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button">Overview</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link custom-tab" id="add-book-tab" data-bs-toggle="tab" data-bs-target="#add-book" type="button">Add New Book</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link custom-tab" id="register-member-tab" data-bs-toggle="tab" data-bs-target="#register" type="button">Register Member</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link custom-tab" id="issue-book-tab" data-bs-toggle="tab" data-bs-target="#issuebook" type="button">Issue Book</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link custom-tab" id="return-book-tab" data-bs-toggle="tab" data-bs-target="#returnbook" type="button">Return Book</button>
+        </li>
+    </ul>
 
-                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
-
-                    <div class="input-group flex-grow-1" style="max-width: 500px;">
-                        <span class="input-group-text bg-white border-end-0">
-                            <i class="bi bi-search text-muted"></i>
-                        </span>
-                        <input type="text" class="form-control border-start-0" placeholder="Search">
-                    </div>
-
-                    <button class="btn btn-teal px-4 btn-primary">Add Book</button>
-                    <button class="btn btn-navy px-4 text-white btn-primary">Bulk Import</button>
-                    <button class="btn btn-navy px-4 text-white btn-primary">Export</button>
-                </div>
-
-                <div class="d-flex gap-4 text-secondary small">
-                    <span><i class="bi bi-search me-1"></i> Category Filter</span>
-                    <span>Availability</span>
-                </div>
-            </div>
+    <div class="tab-content pt-3" id="quickActionContent">
+        
+        <div class="tab-pane fade show active" id="overview" role="tabpanel">
+            
+            <?php include '../Includes/overduetable.php'; ?>
+            
         </div>
 
-    </main>
+        <div class="tab-pane fade" id="add-book" role="tabpanel">
+            <?php include '../Includes/addbook.php'; ?>
+        </div>
 
+        <div class="tab-pane fade" id="register" role="tabpanel">
+            <?php include '../Includes/registerstudent.php'; ?>
+        </div>
+        <div class="tab-pane fade" id="issuebook" role="tabpanel">
+            <?php include '../Includes/issuebook.php'; ?>
+        </div>
+        <div class="tab-pane fade" id="returnbook" role="tabpanel">
+            <?php include '../Includes/returnbook.php'; ?>
+        </div>
+        
+    </div>
+</div>
 
-    <script src="public/assets/libs/bootstrap-5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-    <script src="../../public/assets/js/navsidebar.js"></script>
+                
+
+                
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

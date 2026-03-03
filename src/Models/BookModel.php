@@ -1,21 +1,58 @@
 <?php
 
-require_once 'Config/DBConnection.php';
+require_once __DIR__ . '/../../Config/DBConnection.php';
 
-function getBookByID($conn, $isbn)
+class BookModel extends DBConnection
 {
-    $isbn = mysqli_real_escape_string($conn, $isbn);
-    $sql = "SELECT * FROM book WHERE id = '$isbn' LIMIT 1";
-    $result = mysqli_query($conn, $sql);
+    private $db;
 
-    return mysqli_fetch_assoc($result);
-}
+    // The Constructor: This runs the moment you do "new BookModel()"
+    public function __construct()
+    {
+        // Call the parent (DBConnection) to setup the connection
+        parent::__construct();
+        $this->db = $this->conn; 
+    }
 
-function searchBooks($conn, $item)
-{
+    /**
+     * Inserts data into two tables: 'book' and 'book_inventory'
+     */
+    public function insertBook($bookname, $author, $isbn, $category, $copies, $description, $coverBlob = null)
+    {
+        // Start Transaction (All-or-Nothing)
+        $this->db->begin_transaction();
 
-    $search = mysqli_real_escape_string($conn, $item);
-    $sql = "SELECT * FROM book WHERE bookname LIKE '%$search%' OR author LIKE '%$search%' ORDER BY id DESC";
+        try {
+            // 1. Insert into 'book' table
+            $query1 = "INSERT INTO book (bookname, author, isbn, category, description, coverimg) 
+                       VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt1 = $this->db->prepare($query1);
+            $stmt1->bind_param('sssssis', $bookname, $author, $isbn, $category, $description, $coverBlob);
+            $stmt1->execute();
 
-    return mysqli_query($conn, $sql);
+            // 2. Insert into 'book_copies' table
+            $query2 = "INSERT INTO bookcopies (isbn, copyid) VALUES (?, ?)";
+            $stmt2 = $this->db->prepare($query2);
+            $stmt2->bind_param('si', $isbn, $copies);
+            $stmt2->execute();
+
+            // Commit changes
+            $this->db->commit();
+            
+            $stmt1->close();
+            $stmt2->close();
+            return true;
+
+        } catch (Exception $e) {
+            $this->db->rollback();
+            throw new Exception("Failed to save book: " . $e->getMessage());
+        }
+    }
+
+    public function getAllBooks()
+    {
+        $query = "SELECT * FROM book";
+        $result = $this->db->query($query);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
