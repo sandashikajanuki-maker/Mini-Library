@@ -25,13 +25,17 @@ DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `bookname` varchar(45) NOT NULL,
-  `isbn` int(13) NOT NULL,
+  `isbn` varchar(13) NOT NULL,
   `category` varchar(45) NOT NULL,
   `author` varchar(45) NOT NULL,
   `coverimg` mediumblob NOT NULL,
+  `bookprice` int(11) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `bookquantity` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `isbn_UNIQUE` (`isbn`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  UNIQUE KEY `isbn_UNIQUE` (`isbn`),
+  KEY `isbn` (`isbn`)
+) ENGINE=InnoDB AUTO_INCREMENT=1116 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +44,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
+INSERT INTO `book` VALUES (1111,'Test book','1234567891234','Novel','Amodh','',0,'This is test text for check the home UI of mini library website.',0),(1112,'Test book 1','2345678912345','Novel','Amodh','',0,'This is test text for check the home UI of mini library website.',0),(1113,'Test book 2','3456789123456','Novel','Kushan','',0,'This is test text for check the home UI of mini library website.',0),(1114,'Test book 3','4567891234567','Love','Kushan','',0,'This is test text for check the home UI of mini library website.',0),(1115,'Test book 4','5678912345678','Horror','Dewmini','',0,'This is test text for check the home UI of mini library website.',0);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-25 16:19:27
+-- Dump completed on 2026-03-03  9:57:05
