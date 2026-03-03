@@ -20,10 +20,13 @@ class BookController
             return; // nothing to do
         }
 
-        $bookname    = trim($_POST['bookname'] ?? '');
-        $author      = trim($_POST['author'] ?? '');
-        $isbn        = trim($_POST['isbn'] ?? '');
-        $category    = trim($_POST['category'] ?? '');
+        $bookname = trim($_POST['bookname'] ?? '');
+        $author = trim($_POST['author'] ?? '');
+        $isbn = trim($_POST['isbn'] ?? '');
+        $category = trim($_POST['category'] ?? '');
+        $copies = $_POST['copies'];
+        $description = trim($_POST['description'] ?? '');
+        $coverBlob = trim($_POST['coverimg'] ?? '');
         // other fields (copies/description/rating) are currently not stored
 
         $coverBlob = null;
@@ -32,7 +35,7 @@ class BookController
         }
 
         try {
-            $this->bookModel->insertBook($bookname, $author, $isbn, $category, $coverBlob);
+            $this->bookModel->insertBook($bookname, $author, $isbn, $category, $copies, $description, $coverBlob);
             // after successful insert redirect back to dashboard (prevent form resubmission)
             header('Location: libariandashboard.php?added=1');
             exit;

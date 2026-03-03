@@ -13,7 +13,7 @@
                 <i class="bi bi-book me-2 fs-5" style="color: #6B8E61;"></i>
                 <h5 class="fw-bold mb-0" style="color: #4A6741;">Add Book</h5>
             </div>
-            <a href="inventory.php" class="text-decoration-none small fw-bold" style="color: #6B8E61;">
+            <a href="bookmanagement.php" class="text-decoration-none small fw-bold" style="color: #6B8E61;">
                 Inventory List <i class="bi bi-arrow-right-short"></i>
             </a>
         </div>
@@ -95,26 +95,7 @@
         </div>
     </div>
 
-    <script>
-        document.querySelectorAll('#starRating .star').forEach(star => {
-            star.addEventListener('click', function () {
-                const value = this.getAttribute('data-value');
-                document.getElementById('ratingInput').value = value;
 
-                // Update visual stars
-                const allStars = document.querySelectorAll('#starRating .star');
-                allStars.forEach(s => {
-                    if (s.getAttribute('data-value') <= value) {
-                        s.classList.replace('bi-star', 'bi-star-fill');
-                        s.classList.remove('text-muted');
-                    } else {
-                        s.classList.replace('bi-star-fill', 'bi-star');
-                        s.classList.add('text-muted');
-                    }
-                });
-            });
-        });
-    </script>
     <script src="../../assets/js/addbookvalidation.js"></script>
 </body>
 

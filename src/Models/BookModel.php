@@ -48,4 +48,11 @@ class BookModel extends DBConnection
             throw new Exception("Failed to save book: " . $e->getMessage());
         }
     }
+
+    public function getAllBooks()
+    {
+        $query = "SELECT * FROM book";
+        $result = $this->db->query($query);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }

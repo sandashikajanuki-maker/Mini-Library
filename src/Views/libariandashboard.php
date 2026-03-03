@@ -27,7 +27,7 @@
                             <i class="bi bi-book text-success" style="font-size: 1.5rem;"></i>
                         </div>
                         <div>
-                            <p class="text-muted small mb-0">Total Books</p>
+                            <p class="text-muted small mb-0 text-muted">Total Books</p>
                             <h4 class="fw-bold mb-0" style="color: #34495e;">12,450</h4>
                         </div>
                     </div>
