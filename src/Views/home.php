@@ -33,7 +33,7 @@
         ?>
 
         <div class="container mt-5">
-            <h3>Available Books</h3>
+            <h3></h3>
             <div class="row">
                 <?php while ($book = $result->fetch_assoc()): ?>
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
